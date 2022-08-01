@@ -46,19 +46,21 @@
   cursor: pointer;
 }
 
-.show {
-  display: block;
+
+
+
+/*Question*/
+#question-container {
+  margin: 15px;
+  padding: 15px;
 }
 
 .hide {
   display: none;
 }
 
-/*Question*/
-#question-container {
-  margin: 15px;
-  padding: 15px;
-
+.show {
+  display: flex;
 }
 
 .answer-btn {
@@ -76,6 +78,14 @@
   background-color: aqua;
   cursor: pointer;
 }
+
+.final-result {
+  background-color: beige;
+ text-align: center;
+ justify-content: center;
+ 
+}
+
 
 
 

@@ -5,8 +5,15 @@ var scoreEl = document.getElementById("scores");
 var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answer");
 var correctEl = document.getElementById("correct");
+var gameResultEl = document.getElementById("game-result");
+var finalscoreEl = document.getElementById("final-score");
 var score = 0;
 var QuestionIndex = 0;
+var timeleft;
+var quizover = false;
+timerEl.innerText = 0;
+
+
 
 //Questions Array
 var questions = [
@@ -27,32 +34,43 @@ var questions = [
       options: [{option: '1. <stylesheet>mystyle.css</stylesheet>'}, {option: '2. <link rel="stylesheet" type="text/css" href="mystyle.css">'}, {option: '3. <style src="mystyle.css">'}]
     } ];
 
-var  arrayShuffledQuestions = questions.sort(() => Math.random() - 0.5);
-
-
-var setQuestion = function() {
-    displayQuestion(arrayShuffledQuestions[QuestionIndex]);
-}
 
 // timer
 var setTime = function() {
-   var timeleft = 25;
+    timeleft = 10;
 
     var timercheck = setInterval(function() {
+        timerEl.innerText = timeleft;
         timeleft--;
-        timerEl.textContent = timeleft;
 
-        if (timeleft < 0) {
-            timerEl.textContent = 0;
+        if (timeleft <= 0 || quizover === true) {
+            timerEl.innerText = 0;
             clearInterval(timercheck);
+            conatinerQuestionEl.classList.add("hide");
+            gameResultEl.innerText = "Quiz Over";
+            finalscoreEl.innerText = score;
         }
     }, 1000);
 };
 
-startEl.addEventListener("click", setTime);
+var startQuiz = function() {
+    setTime(); 
+    setQuestion();
+}
 
+// display question and options for it
+var setQuestion = function() {
+    resetOptions();
+    displayQuestion(questions[QuestionIndex]);
+}
 
-// display question and answers
+//remove option buttons
+var resetOptions = function() {
+    while (answerEl.firstChild) {
+        answerEl.removeChild(answerEl.firstChild)
+    };
+};
+
 var displayQuestion = function(index) {
     questionEl.innerText = index.q
     for (var i = 0; i < index.options.length; i++) {
@@ -64,35 +82,33 @@ var displayQuestion = function(index) {
     }
 };
 
-setQuestion();
-
+//check answer
 var answerCheck = function(event) {
     var selectedOption = event.target
-        if (arrayShuffledQuestions[QuestionIndex].a === selectedOption.innerText) {
-        correctEl.textContent = 'true';
-        score = score + 2;
+        if (questions[QuestionIndex].a === selectedOption.innerText) {
+        correctEl.textContent = 'Correct'
+        score = score + 5;
     }
     else {
-        correctEl.textContent ='false'
-        score = score - 1;
-        timeleft = timeleft - 2;
+        correctEl.textContent ='Wrong'
+        score = score - 2;
+        timeleft = timeleft - 5;
     }
 
-    
-    QuestionIndex++
-      if  (arrayShuffledQuestions.length > QuestionIndex + 1) {
-          setQuestion()
-      }   
-      else {
-         
-          }
+    scoreEl.innerText = score;
+    QuestionIndex++;
+
+    if  (questions.length > QuestionIndex) {
+        setQuestion();
+    }
+    else {
+        quizover = true;
+    }
 };
 
-var setScore = function() {
-    scoreEl.innerText = score
-}
+//execution of the script
+startEl.addEventListener("click", startQuiz);
 
-setScore()
 
 
 

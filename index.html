@@ -10,23 +10,33 @@
 <body>
 
     <header>
-        <h4 class="score">Score: <span id="scores">NN</span></h4>
+        <h4 class="score">Score: <span id="scores"></span></h4>
         <h4 class="timer">Time: <span id="time"></span></h4>
     </header>
 
-    <div id="start-container" class="show">        
+    <div id="start-container">        
             <h1>Coding Quiz Challenge</h1>
             <br>  
             <button id="start" class="start-btn">Start Quiz</button> 
     </div>
 
-    <div id= "question-container" class="show">
+    <div id="question-container">
         <h2 id="question"> Question </h2>
         <div id="answer"></div>  
+        <h3>Answer is: <span id="correct"></span></h3>
+    </div>
+    
+    
+    
+    <div class ="final-result">
+        <h3>Game Result: <span id="game-result"></span></h3>
+        <h3>Your Final Score is: <span id="final-score"></span></h3>
+  
     </div>
 
-
-    <h3>Answer is: <span id="correct">MM</span></h3>
+      
+  
+ 
 
 
     <script src="./script.js"></script>
