@@ -17,7 +17,7 @@
     <div id="start-container">        
             <h1>Coding Quiz Challenge</h1>
             <br>  
-            <button id="start" class="start-btn">Start Quiz</button> 
+            <button id="start" class="btn">Start Quiz</button> 
     </div>
 
     <div id="question-container">
@@ -25,12 +25,21 @@
         <div id="answer"></div>  
         <h3>Answer is: <span id="correct"></span></h3>
     </div>
-    
+
+
+
     
     
     <div class ="final-result">
         <h3>Game Result: <span id="game-result"></span></h3>
-        <h3>Your Final Score is: <span id="final-score"></span></h3>
+        <form id="initials-form">
+            <p> Enter Initials:
+              <input type="text" id="initials" />
+              <button class="btn" id="sumbit-score" type="submit">Submit</button> </p>
+              <h3><span id="gameover-display"></span> your final Score is: <span id="final-score"></span></h3>
+    
+        </form>
+    
   
     </div>
 

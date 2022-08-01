@@ -1,5 +1,6 @@
 var startEl = document.getElementById("start");
 var conatinerQuestionEl = document.getElementById("question-container");
+var formInitials = document.getElementById("initials-form")
 var timerEl = document.getElementById("time");
 var scoreEl = document.getElementById("scores");
 var questionEl = document.getElementById("question");
@@ -7,6 +8,8 @@ var answerEl = document.getElementById("answer");
 var correctEl = document.getElementById("correct");
 var gameResultEl = document.getElementById("game-result");
 var finalscoreEl = document.getElementById("final-score");
+var gameoverdisplayEl = document.getElementById("gameover-display");
+var initialsEl = document.getElementById("initials");
 var score = 0;
 var QuestionIndex = 0;
 var timeleft;
@@ -106,8 +109,40 @@ var answerCheck = function(event) {
     }
 };
 
+
+var gameoverDisplay = function(event) {
+
+  var initials = initialsEl.value;
+  
+    if ( initials !== ""){
+        var highscore = JSON.parse(window.localStorage.getItem("highscore")) || [];
+        var newHighScore = {
+            score :score, 
+            initials:initials
+        }
+        highscore.push(newHighScore)
+        window.localStorage.setItem("highscore",JSON.stringify(highscore))
+    }
+  
+   // localStorage.setItem("player",JSON.stringify(player));
+gameoverDisplay();
+
+    
+    //event.preventDefault(); 
+   // document.querySelector("#initials").value;
+    //gameoverdisplayEl.innerText = gameoverDisplay;
+};
+function renderhighscore() {
+    finalscoreEl = JSON.parse(localStorage.getItem("initials"));
+
+}
+//console.log(gameoverDisplay);
+
 //execution of the script
 startEl.addEventListener("click", startQuiz);
+formInitials.addEventListener("submit",gameoverDisplay);
+
+
 
 
 
