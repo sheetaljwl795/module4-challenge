@@ -2,7 +2,6 @@ var startEl = document.getElementById("start");
 var conatinerQuestionEl = document.getElementById("question-container");
 var formInitials = document.getElementById("initials-form")
 var timerEl = document.getElementById("time");
-var scoreEl = document.getElementById("scores");
 var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answer");
 var correctEl = document.getElementById("correct");
@@ -51,7 +50,7 @@ var setTime = function() {
             clearInterval(timercheck);
             conatinerQuestionEl.classList.add("hide");
             gameResultEl.innerText = "Quiz Over";
-            finalscoreEl.innerText = score;
+            
         }
     }, 1000);
 };
@@ -98,7 +97,7 @@ var answerCheck = function(event) {
         timeleft = timeleft - 5;
     }
 
-    scoreEl.innerText = score;
+   
     QuestionIndex++;
 
     if  (questions.length > QuestionIndex) {
@@ -111,28 +110,17 @@ var answerCheck = function(event) {
 
 var gameoverDisplay = function(event) {
     event.preventDefault();
-    var initials = document.getElementById("initials").value;
-    console.log(initials);
-    if (initials !== "") {
-        var highscore = JSON.parse(window.localStorage.getItem("highscore")) || [];
-        var newHighScore = {
-            score: score, 
-            initials: initials
-        }
-        highscore.push(newHighScore)
-        window.localStorage.setItem("highscore",JSON.stringify(highscore))
-    }  
+
+    if (abcd = document.getElementById("initials").value) {
+        gameoverdisplayEl.innerText = abcd;
+        finalscoreEl.innerText = score;
+    }
+
 };
-
-var renderhighscore = function() {
-    finalscoreEl = JSON.parse(localStorage.getItem("initials"));
-}
-
-// gameoverDisplay();
 
 //execution of the script
 startEl.addEventListener("click", startQuiz);
-formInitials.addEventListener("submit", gameoverDisplay);
+formInitials.addEventListener("click", gameoverDisplay);
 
 
 

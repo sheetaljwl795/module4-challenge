@@ -10,7 +10,7 @@
 <body>
 
     <header>
-        <h4 class="score">Score: <span id="scores"></span></h4>
+        <h6 class="score">Scoring Mechanism: +5 for Correct Answer and -2 for Incorrect </h4>
         <h4 class="timer">Time: <span id="time"></span></h4>
     </header>
 
@@ -31,14 +31,16 @@
     
     
     <div class ="final-result">
+
         <h3>Game Result: <span id="game-result"></span></h3>
+
         <form id="initials-form">
-            <p> Enter Initials:
-              <input type="text" id="initials"/>
-              <button class="btn" id="sumbit-score" type="submit">Submit</button> </p>
-              <h3><span id="gameover-display"></span> your final Score is: <span id="final-score"></span></h3>
-    
+            <label for="f-initials">Enter Intials</label>
+            <input id="initials" type="text" name="f-initials"/> 
+            <button id="sumbit-score" class="btn">Submit</button></p>
         </form>
+
+        <h3><span id="gameover-display"></span> your final Score is: <span id="final-score"></span></h3>  
     
   
     </div>
