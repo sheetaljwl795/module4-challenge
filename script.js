@@ -109,38 +109,30 @@ var answerCheck = function(event) {
     }
 };
 
-
 var gameoverDisplay = function(event) {
-
-  var initials = initialsEl.value;
-  
-    if ( initials !== ""){
+    event.preventDefault();
+    var initials = document.getElementById("initials").value;
+    console.log(initials);
+    if (initials !== "") {
         var highscore = JSON.parse(window.localStorage.getItem("highscore")) || [];
         var newHighScore = {
-            score :score, 
-            initials:initials
+            score: score, 
+            initials: initials
         }
         highscore.push(newHighScore)
         window.localStorage.setItem("highscore",JSON.stringify(highscore))
-    }
-  
-   // localStorage.setItem("player",JSON.stringify(player));
-gameoverDisplay();
-
-    
-    //event.preventDefault(); 
-   // document.querySelector("#initials").value;
-    //gameoverdisplayEl.innerText = gameoverDisplay;
+    }  
 };
-function renderhighscore() {
-    finalscoreEl = JSON.parse(localStorage.getItem("initials"));
 
+var renderhighscore = function() {
+    finalscoreEl = JSON.parse(localStorage.getItem("initials"));
 }
-//console.log(gameoverDisplay);
+
+// gameoverDisplay();
 
 //execution of the script
 startEl.addEventListener("click", startQuiz);
-formInitials.addEventListener("submit",gameoverDisplay);
+formInitials.addEventListener("submit", gameoverDisplay);
 
 
 
